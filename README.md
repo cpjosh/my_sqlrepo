@@ -1,46 +1,13 @@
-# Analysis of movies released between 2012-1014 
+# Chandra Joshi's SQL Portfolio
 
--- source: unknown (provided by google during course completion)
---dataset: movies
---Queried using: BigQuery
+Hello and thank you for checking my SQL portfolio. Here you can find the projects I have done and the SQL queries I have used to search and retrive data from database.
+Feel free to check and contact me through linkdin(https://www.linkedin.com/in/cp-joshi-0884421a2/)
+You can also check my Tableau Public profile to see Visualizations I have created(https://public.tableau.com/app/profile/chandra.joshi2129)
 
-------------------------------------------------------------------------------------------------------------------
-##This is a simple project that answers general questions
+#Here are some of my favourite solo projects I have worked on
 
-SELECT *
-FROM `chandra2-396108.movies.movie_data`
+**Movies Data Analysis** - [SQL] (https://github.com/cpjosh/my_sqlrepo/blob/main/basic_queries.sql)
 
---------------------------------------------------------------------------------------------------------------------
+**Movies Dashboard** - [Tableau] (https://public.tableau.com/app/profile/chandra.joshi2129/viz/Dashboard_Movies2012-2014/Movies_analysis2012-2016)
 
---number of movies released by genre in this time period?
-
-SELECT count(*) as number_of_movies,
-      Genre
-FROM `chandra2-396108.movies.movie_data`
-GROUP BY Genre
-ORDER BY Genre
-
-------------------------------------------------------------------------------------------------------------------------
---Which genre has the most investment per movie and which generated the most revenue per movie?
---the budget and revenue are rounded to nearest cents
-
-SELECT  ROUND(AVG(Budget_),2) as Budget_per_movie,
-        ROUND(AVG(Revenue),2) as Revenue_per_movie,
-        Genre
-FROM `chandra2-396108.movies.movie_data`
-GROUP BY Genre
-ORDER BY Revenue_per_movie DESC 
-
-----------------------------------------------------------------------------------------------------------------------------
-
---For visualization purpose, i have selected specific, required columns so that we can export the resulted table to make visulizations and analyse further in various tools like Tableau or R.
-
-SELECT Movie_Title as movie_title,
-      Release_Date as release_date,
-      Genre as genre,
-      Budget_ as budget,
-      Revenue as revenue
-FROM `chandra2-396108.movies.movie_data`
-
----------------------------------------------------------------------------------------------------------------
 
