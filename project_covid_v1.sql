@@ -1,3 +1,5 @@
+-- LInk to dataset (https://ourworldindata.org/covid-deaths)
+
 --SELECT TOP(10) * FROM project_covid.dbo.covid_deaths ORDER BY 3,4
 
 --SELECT * FROM project_covid..covid_vax ORDER BY 3,4
