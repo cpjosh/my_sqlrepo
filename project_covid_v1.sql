@@ -1,7 +1,9 @@
-SELECT TOP(10) * FROM project_covid.dbo.covid_deaths ORDER BY 3,4
+--SELECT TOP(10) * FROM project_covid.dbo.covid_deaths ORDER BY 3,4
 
-SELECT * FROM project_covid..covid_vax ORDER BY 3,4
+--SELECT * FROM project_covid..covid_vax ORDER BY 3,4
 
+-------------------------------------------------------------------------
+--total vaccination by each country
 
 SELECT location,
 	SUM(CAST(new_vaccinations as FLOAT)) as total_vaccination
@@ -10,18 +12,16 @@ WHERE (new_vaccinations is not NULL) and (continent is not NULL)
 GROUP BY location
 ORDER BY 1
 
+------------------------------------------------------------------------------------------
 -- firstly, checking how many people were affected by Covind in this recorded period
--- the number is presuembly higher, it is rough estimate
 
-SELECT SUM(cases_per_continent) as total_covid_cases
 
-FROM (SELECT MAX(total_cases) as cases_per_continent,
-		continent
-FROM project_covid.dbo.covid_deaths
-WHERE continent is not NULL
-GROUP BY continent)
 
--- it seems there could be cases of multiple infections by virus so , we can rather say ther were more than 68.5 billion covid cases across the world
+SELECT SUM(CAST(total_deaths as int)) as total_covid_cases
+FROM project_covid..covid_deaths
+WHERE continent is NULL
+
+
 
 ------------------------------------------------------------------------
 
@@ -73,8 +73,8 @@ GROUP BY location
 ORDER BY deaths DESC
 
 
--- From here I am going to follow the instructer 
--- First, selecting the required columns from the table
+------------------------------------------------------------------------------------------------
+--  selecting the important columns from the table to export
 
 SELECT location, date, total_cases, new_cases, total_deaths,population
 
@@ -82,7 +82,7 @@ FROM project_covid..covid_deaths
 
 ORDER BY 1, 2
 
-
+------------------------------------------------------------------------------------------------------
 -- total cases vs total deaths (--number of deaths per total cases)
 
 SELECT TOP(1000) location, date, total_cases, new_cases, total_deaths,population, (total_deaths/total_cases)*100 as deaths_percentage
